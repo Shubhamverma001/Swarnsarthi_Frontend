@@ -2,3 +2,12 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@import '../node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import '../node_modules/@fortawesome/fontawesome-free/scss/solid.scss';
+@import '../node_modules/@fortawesome/fontawesome-free/scss/regular.scss';
+@import '../node_modules/@fortawesome/fontawesome-free/scss/brands.scss';
+@import '../node_modules/mdb-angular-ui-kit/assets/scss/mdb.scss';
+
+.main-body{
+    margin:15px;
+}
