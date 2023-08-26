@@ -9,6 +9,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { BackendService } from '../services/backend.service';
 import { ToastrService } from '../services/toastr.service';
 import { BookingsComponent } from './bookings/bookings.component';
+import { PaymentComponent } from './payment/payment.component';
 
 const routes: Routes = [
   {
@@ -24,7 +25,11 @@ const routes: Routes = [
      },
      {
       path:'my-bookings',
-      component:BookingsComponent
+      component:BookingsComponent,
+     },
+     {
+      path:'payment',
+      component:PaymentComponent,
      }
     ],
      
@@ -39,6 +44,7 @@ const routes: Routes = [
     FindVolunteerComponent,
     ProfileComponent,
     BookingsComponent,
+    PaymentComponent,
   ],
   imports: [
     CommonModule,

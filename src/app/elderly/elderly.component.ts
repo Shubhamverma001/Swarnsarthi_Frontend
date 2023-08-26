@@ -9,6 +9,7 @@ interface NavList {
   name: string;
   url:string;
   children?: NavList[];
+
 }
  
 const TREE_DATA: NavList[] = [
@@ -25,6 +26,10 @@ const TREE_DATA: NavList[] = [
     url:'/elderly/my-bookings'
   },
   {
+    name:'Payments',
+    url:'/elderly/payment'
+  },
+  {
     name:'Logout',
     url:''
   },
@@ -38,6 +43,7 @@ const TREE_DATA: NavList[] = [
 export class ElderlyComponent {
   treeControl = new NestedTreeControl<NavList>(node => node.children);
   dataSource = new MatTreeNestedDataSource<NavList>();
+  username = "";
  
   hasChild = (_: number, node: NavList) => !!node.children && node.children.length > 0;
  
@@ -54,6 +60,7 @@ export class ElderlyComponent {
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
     this.dataSource.data = TREE_DATA;
+    this.username = this.getUserName();
   }
  
   ngOnDestroy(): void {
@@ -73,5 +80,8 @@ export class ElderlyComponent {
     }
   }
 
-
+ getUserName(){
+  const user = this.backendService.getSavedUser();
+  return `${user.firstName} ${user.lastName}`
+}
 }

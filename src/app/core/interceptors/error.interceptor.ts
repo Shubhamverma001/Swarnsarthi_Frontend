@@ -55,7 +55,7 @@ export class ErrorInterceptor implements HttpInterceptor {
             error?.error?.error?.statusCode === STATUS_CODE.UNPROCESSABLE_ENTITY
           ) {
             const errMsg = this.getErrMsg(error);
-            this.toastrService.error(errMsg, 'Error');
+            //this.toastrService.error(errMsg, 'Error');
           } else if (
             error instanceof HttpErrorResponse &&
             !this._checkTokenExpiryErr(error)

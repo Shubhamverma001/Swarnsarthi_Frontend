@@ -1,8 +1,9 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute } from '@angular/router';
 import { take } from 'rxjs';
 import { DEFAULT_TOAST_TIME } from 'src/app/const';
 import { BackendService } from 'src/app/services/backend.service';
@@ -21,7 +22,7 @@ export interface UserData {
   templateUrl: './find-volunteer.component.html',
   styleUrls: ['./find-volunteer.component.scss']
 })
-export class FindVolunteerComponent implements AfterViewInit {
+export class FindVolunteerComponent implements AfterViewInit, OnInit{
   displayedColumns: string[] = ['name', 'age', 'hourlyCharge', 'totalCharge','action'];
   dataSource: MatTableDataSource<UserData>;
 
@@ -34,6 +35,7 @@ export class FindVolunteerComponent implements AfterViewInit {
     private readonly formBuilder: FormBuilder,
     private readonly backendService: BackendService,
     private readonly toastrService: ToastrService,
+    private readonly activatedRoute:ActivatedRoute,
     
   ) {this.dataSource = new MatTableDataSource();}
   form = this.formBuilder.group({
@@ -50,6 +52,17 @@ export class FindVolunteerComponent implements AfterViewInit {
     this.dataSource.sort = this.sort;
   }
 
+  ngOnInit(): void {
+      const params = this.activatedRoute.snapshot.queryParams['action']
+      if(params === 'bookingdone'){
+         this.toastrService.success("","Booking Payment Successful",DEFAULT_TOAST_TIME)
+         
+      }
+      else if(params === 'bookingfailed'){
+        this.toastrService.error("","Booking Payment Unsuccessful",DEFAULT_TOAST_TIME)
+ 
+      }
+  }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -107,8 +120,10 @@ export class FindVolunteerComponent implements AfterViewInit {
     .subscribe({
       next: res => {
         // this.form.reset();
-        this.toastrService.success("","Booking Request Successful",DEFAULT_TOAST_TIME)
+        //this.toastrService.success("","Booking Request Successful",DEFAULT_TOAST_TIME)
+
         this.activeSubmitVolunteer=false;
+        window.location.href=res.link;
       },
       error: res=>{
         this.toastrService.error("","Booking Request Unsuccessful",DEFAULT_TOAST_TIME)

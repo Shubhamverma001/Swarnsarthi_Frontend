@@ -12,6 +12,7 @@
   // background: #FF4081 !important;
   // background: #3f51b5 !important;
   background-color: #313440;
+  text-align: center;
 }
  
 .nav-list{
@@ -30,6 +31,12 @@
   h1.example-app-name {
     margin-left: 8px;
     text-align: center;
+    font-size: larger;
+  }
+
+  h1.example-user-name {
+    margin-left: 8px;
+    text-align: right;
     font-size: larger;
   }
  

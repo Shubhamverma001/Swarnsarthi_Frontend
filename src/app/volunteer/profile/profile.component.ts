@@ -13,6 +13,7 @@ import { ToastrService } from 'src/app/services/toastr.service';
 
 export class ProfileComponent {
   activeSubmit=false;
+  detailsAlreadySaved = false;
   constructor(
     private readonly formBuilder: FormBuilder,
     private readonly backendService: BackendService,
@@ -32,7 +33,8 @@ export class ProfileComponent {
             this.f['age'].setValue(`${res.age}`)
             this.f['gender'].setValue(res.gender)
             this.f['city'].setValue(res.city)
-            this.activeSubmit=true;
+            //this.activeSubmit=true;
+            this.detailsAlreadySaved = true;
           }
          
           // this.form.reset();
@@ -73,6 +75,7 @@ export class ProfileComponent {
           // this.form.reset();
           this.toastrService.success("","Details Saved",DEFAULT_TOAST_TIME)
           //this.activeSubmit=false;
+          window.location.reload()
         },
         error: res=>{
           this.activeSubmit=false;
@@ -85,5 +88,13 @@ export class ProfileComponent {
     this.f['gender'].setValue(gender.value);
   }
 
-
+  getButtonText(){
+    if(this.detailsAlreadySaved)
+    {
+      return 'Edit'
+    }
+    return 'Submit'
+  }
 }
+
+

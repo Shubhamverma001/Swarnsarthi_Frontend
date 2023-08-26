@@ -1,12 +1,15 @@
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
-    <mat-toolbar color="primary" class="example-toolbar">
+    <mat-toolbar color="primary" class="example-toolbar" style="border:10px solid black; margin-bottom:10px;">
         <mat-grid-list cols="12" rows="2" class="mgl">
             <mat-grid-tile colspan="2" rowspan="2">
                 <button style="position: absolute; left:10px" mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
             </mat-grid-tile>
-            <mat-grid-tile colspan="10" rowspan="2">
-                <h1 class="example-app-name">Elderly Profile</h1>
+            <mat-grid-tile colspan="7" rowspan="2">
+                <h1 class="example-app-name"><b>Elderly Profile</b></h1>
             </mat-grid-tile>
+            <mat-grid-tile colspan="3" rowspan="2">
+              <h3 class="example-user-name"><b>Welcome, {{username}}</b></h3>
+          </mat-grid-tile>
           </mat-grid-list>
     </mat-toolbar>
  

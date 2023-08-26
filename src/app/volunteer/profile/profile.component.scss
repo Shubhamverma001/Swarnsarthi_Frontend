@@ -1,4 +1,5 @@
 .background-radial-gradient {
+
     background-color: hsl(218, 41%, 15%);
     background-image: radial-gradient(650px circle at 0% 0%,
         hsl(218, 41%, 35%) 15%,
@@ -13,7 +14,18 @@
         hsl(218, 41%, 19%) 80%,
         transparent 100%);
   }
-  
+  .mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label
+ {
+    color: white;
+}
+.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input 
+{
+    color:white;
+}
+
+.mat-mdc-select-value {
+    color: white;
+}
   #radius-shape-1 {
     height: 220px;
     width: 220px;
@@ -37,3 +49,4 @@
     background-color: hsla(0, 0%, 100%, 0.9) !important;
     backdrop-filter: saturate(200%) blur(25px);
   }
+

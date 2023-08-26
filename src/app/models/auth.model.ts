@@ -98,4 +98,16 @@ export class BookingRequestRequest{
 
 export class BookingRequestResponse{
   message:string;
+  link:string;
+}
+
+export class AddBankResponse{
+  link:string;
+}
+
+export class UpdateBankResponse{
+  lastFour : string;
+  bankName : string;
+  isVerified : boolean;
+
 }

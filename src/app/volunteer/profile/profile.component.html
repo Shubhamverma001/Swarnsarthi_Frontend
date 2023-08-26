@@ -1,18 +1,21 @@
+<div class="main-body">
 <form [formGroup]="form" (ngSubmit)="submit()">
-    <div class="mb-4 row">
-        <mat-form-field>
+    <div class="mb-4 row" style="padding:10px;">
+        <mat-form-field appearance="outline" >
+          <mat-label>Hourly Charges:</mat-label>
           <input type="number" matInput placeholder="Enter Your Hourly Charge" formControlName="hourlycharge">
           <mat-error>Charges are too high</mat-error>
         </mat-form-field>
       </div>
-    <div class="mb-4 row">
-      <mat-form-field>
+    <div class="mb-4 row" style="padding:10px;">
+      <mat-form-field appearance="outline">  
+        <mat-label>Age:</mat-label>
         <input type="number" matInput placeholder="Enter Your Age" formControlName="age">
         <mat-error>Age Limit Exceeded</mat-error>
       </mat-form-field>
     </div>
-    <div class="mb-4 row">
-      <mat-form-field appearance="fill">
+    <div class="mb-4 row" style="padding:10px;">
+      <mat-form-field appearance="outline">
           <mat-label>Gender</mat-label>
           <mat-select formControlName="gender" (selectionChange)="onSelectGender($event)">
             <mat-option value="male">Male</mat-option>
@@ -20,8 +23,8 @@
           </mat-select>
         </mat-form-field>
       </div>
-      <div class="mb-4 row">
-        <mat-form-field appearance="fill">
+      <div class="mb-4 row" style="padding:10px;">
+        <mat-form-field appearance="outline">
             <mat-label>City</mat-label>
             <mat-select formControlName="city" (selectionChange)="onSelectCity($event)">
               <mat-option value="delhi">Delhi</mat-option>
@@ -33,7 +36,10 @@
           </mat-form-field>
         </div>
     <!-- Submit button -->
-    <button type="submit" [disabled]="activeSubmit" class="btn btn-primary btn-block mb-4">
-      Submit
+    <div class="mb-4 row" style="padding:10px; justify-content:center;">
+    <button type="submit" [disabled]="activeSubmit" class="btn btn-success btn-block mb-4" style="max-width:500px;">
+      {{getButtonText()}}
     </button>
+  </div>
   </form>
+</div>

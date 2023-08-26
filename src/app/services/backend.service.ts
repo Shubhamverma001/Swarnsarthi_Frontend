@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {AddElderlyDetailCommand, AddVolunteerDetailCommand, BookingRequestCommand, FindVolunteerCommand, GetElderlyBookingsCommand, GetElderlyDetailsCommand, GetVolunteerBookingsCommand, GetVolunteerDetailsCommand, LoginCommand, RefreshTokenCommand, SignupCommand} from '../commands/backend.command';
+import {AddBankCommand, AddElderlyDetailCommand, AddVolunteerDetailCommand, BookingRequestCommand, FindVolunteerCommand, GetElderlyBookingsCommand, GetElderlyDetailsCommand, GetVolunteerBookingsCommand, GetVolunteerDetailsCommand, LoginCommand, RefreshTokenCommand, SignupCommand, UpdateBankAccountCommand} from '../commands/backend.command';
 import {ApiService} from '../core/api/api.service';
 import {AnyAdapter} from '../core/api/adapters/any-adapter.service';
 import {BookingRequestRequest, ElderlyDetailsRequest, FindVolunteerRequest, LoginRequest, SignupRequest, VolunteerDetailsRequest} from '../models/auth.model';
@@ -66,6 +66,10 @@ export class BackendService {
   logout() {
     this.store.removeAccessToken();
     this.store.removeRefreshToken();
+    this.store.removeUser()
+  }
+  getSavedUser(){
+    return this.store.getUser();
   }
   login(loginRequest:LoginRequest){
     const command = new LoginCommand(this.apiService,this.anyAdapter);
@@ -81,6 +85,11 @@ export class BackendService {
             this.store.clearAll();
             this.store.saveAccessToken(response.jwtToken);
             this.store.saveRefreshToken(response.refreshToken);
+            this.store.setUser({
+              firstName: response.firstName,
+              lastName: response.lastName,
+              role: response.role,
+            })
             if (response.role === RoleType.Elderly){
               this.router.navigate(['elderly'])
             }
@@ -117,6 +126,15 @@ export class BackendService {
     return command.execute();
   }
 
+  addBankAccount() {
+    const command = new AddBankCommand(this.apiService, this.anyAdapter);
+    command.parameters = {
+      observe: 'body',
+      data:{},
+    };
+    return command.execute();
+  }
+
   getVolunteerDetails() {
     const command = new GetVolunteerDetailsCommand(this.apiService, this.anyAdapter);
     command.parameters = {
@@ -127,6 +145,14 @@ export class BackendService {
 
   getElderlyDetails() {
     const command = new GetElderlyDetailsCommand(this.apiService, this.anyAdapter);
+    command.parameters = {
+      observe: 'body',
+    };
+    return command.execute();
+  }
+
+  syncBankAccount() {
+    const command = new UpdateBankAccountCommand(this.apiService, this.anyAdapter);
     command.parameters = {
       observe: 'body',
     };
@@ -167,6 +193,15 @@ export class BackendService {
       observe: 'body',
     };
     return command.execute();
+  }
+
+  isLoggedIn(){
+  const savedAccessToken = this.store.getAccessToken();
+  const savedRefreshToken = this.store.getRefreshToken();
+  if(!savedAccessToken || !savedRefreshToken){
+    return false;
+  }
+  return true;
   }
 
 }

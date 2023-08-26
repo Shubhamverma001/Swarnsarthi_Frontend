@@ -58,3 +58,7 @@
   background-color: hsla(0, 0%, 100%, 0.9) !important;
   backdrop-filter: saturate(200%) blur(25px);
 }
+
+.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input {
+    color: black !important;
+}

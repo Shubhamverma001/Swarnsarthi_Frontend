@@ -1,7 +1,7 @@
 import { IAdapter } from "../core/api/adapters/i-adapter";
 import { ApiService } from "../core/api/api.service";
 import { GetAPICommand, PostAPICommand } from "../core/api/commands";
-import { BookingRequestRequest, BookingRequestResponse, ElderlyBookingResponse, ElderlyDetailsRequest, ElderlyDetailsResponse, FindVolunteerRequest, FindVolunteerResponse, LoginRequest, LoginResponse, RefreshTokenRequest, RefreshTokenResponse, SignupRequest, SignupResponse, VolunteerBookingResponse, VolunteerDetailsRequest, VolunteerDetailsResponse } from "../models/auth.model";
+import { AddBankResponse, BookingRequestRequest, BookingRequestResponse, ElderlyBookingResponse, ElderlyDetailsRequest, ElderlyDetailsResponse, FindVolunteerRequest, FindVolunteerResponse, LoginRequest, LoginResponse, RefreshTokenRequest, RefreshTokenResponse, SignupRequest, SignupResponse, UpdateBankResponse, VolunteerBookingResponse, VolunteerDetailsRequest, VolunteerDetailsResponse } from "../models/auth.model";
 //import {environment} from '@env/environment';
 
 export class SignupCommand extends PostAPICommand<SignupResponse,SignupRequest> {
@@ -28,8 +28,8 @@ export class FindVolunteerCommand extends PostAPICommand<FindVolunteerResponse[]
   }
 }
 
-export class BookingRequestCommand extends PostAPICommand<BookingRequestResponse[],BookingRequestRequest> {
-  constructor(apiService: ApiService, adapter: IAdapter<BookingRequestResponse[],BookingRequestRequest>) {
+export class BookingRequestCommand extends PostAPICommand<BookingRequestResponse,BookingRequestRequest> {
+  constructor(apiService: ApiService, adapter: IAdapter<BookingRequestResponse,BookingRequestRequest>) {
     super(apiService, adapter, `http://localhost:4000/accounts/volunteer-bookings`);
   }
 }
@@ -70,3 +70,14 @@ export class GetElderlyBookingsCommand extends GetAPICommand<ElderlyBookingRespo
   }
 }
 
+export class AddBankCommand extends PostAPICommand<AddBankResponse,{}> {
+  constructor(apiService: ApiService, adapter: IAdapter<AddBankResponse,{}>) {
+    super(apiService, adapter, `http://localhost:4000/accounts/add-bank`);
+  }
+}
+
+export class UpdateBankAccountCommand extends GetAPICommand<UpdateBankResponse> {
+  constructor(apiService: ApiService, adapter: IAdapter<UpdateBankResponse>) {
+    super(apiService, adapter, `http://localhost:4000/accounts/sync-bank`);
+  }
+}

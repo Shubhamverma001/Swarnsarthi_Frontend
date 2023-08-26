@@ -22,6 +22,10 @@ const TREE_DATA: NavList[] = [
     url:'/volunteer/bookings'
   },
   {
+    name:'Payments',
+    url:'/volunteer/payment'
+  },
+  {
     name:'Logout',
     url:''
   },
@@ -34,6 +38,7 @@ const TREE_DATA: NavList[] = [
 export class VolunteerComponent {
   treeControl = new NestedTreeControl<NavList>(node => node.children);
   dataSource = new MatTreeNestedDataSource<NavList>();
+  username = "";
  
   hasChild = (_: number, node: NavList) => !!node.children && node.children.length > 0;
  
@@ -50,6 +55,7 @@ export class VolunteerComponent {
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
     this.dataSource.data = TREE_DATA;
+    this.username = this.getUserName();
   }
  
   ngOnDestroy(): void {
@@ -67,6 +73,10 @@ export class VolunteerComponent {
     else{
       this.logout();
     }
+  }
+  getUserName(){
+    const user = this.backendService.getSavedUser();
+    return `${user.firstName} ${user.lastName}`
   }
 
 }

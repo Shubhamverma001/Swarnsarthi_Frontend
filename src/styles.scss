@@ -8,6 +8,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 @import '../node_modules/@fortawesome/fontawesome-free/scss/brands.scss';
 @import '../node_modules/mdb-angular-ui-kit/assets/scss/mdb.scss';
 
+
 .main-body{
-    margin:15px;
+    padding-top:10px;
+    margin-top:14px;
+    border-radius:20px;
+    color:whitesmoke !important;
+    height:100%;
+    background-color: #ffffb5;
+    background-image: linear-gradient(315deg, #CFE7fA 0%, #6393C1 100%);
+
 }
+

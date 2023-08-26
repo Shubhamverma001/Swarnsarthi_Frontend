@@ -5,6 +5,7 @@ import { SharedModule } from '@shared/shared.module';
 import { RouterModule, Routes } from '@angular/router';
 import { ProfileComponent } from './profile/profile.component';
 import { BookingsComponent } from './bookings/bookings.component';
+import { PaymentComponent } from './payment/payment.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
      {
       path:'bookings',
       component:BookingsComponent
+     },
+     {
+      path:'payment',
+      component:PaymentComponent,
      }
     ],
   },
@@ -28,6 +33,7 @@ const routes: Routes = [
     VolunteerComponent,
     ProfileComponent,
     BookingsComponent,
+    PaymentComponent,
     
   ],
 

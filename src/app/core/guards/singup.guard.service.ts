@@ -17,7 +17,7 @@ export class SignupGuardService implements CanActivate {
   canActivate(): Promise<boolean> | boolean {
     const token = this.checkForToken();
     if (!token) {
-      this.router.navigate(['/login']);
+      this.router.navigate(['auth','login']);
       return false;
     }
     return true;

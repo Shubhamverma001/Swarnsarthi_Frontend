@@ -1,34 +1,36 @@
 <div class="main-body">
 <form [formGroup]="form" (ngSubmit)="submit()">
-    <div class="mb-4 row">
-      <mat-form-field>
+  <div class="mb-4 row" style="padding:10px;">
+    <mat-form-field appearance="outline">  
         <input type="number" matInput placeholder="Enter Your Budget" formControlName="budget">
         <mat-error>Invalid input</mat-error>
       </mat-form-field>
     </div>
-    <div class="mb-4 row">
-        <mat-form-field>
+    <div class="mb-4 row" style="padding:10px;">
+      <mat-form-field appearance="outline">  
           <input type="days" matInput placeholder="Enter the days of requirement" formControlName="days">
           <mat-error>Invalid input</mat-error>
         </mat-form-field>
       </div>
-      <div class="mb-4 row">
-        <mat-form-field>
+      <div class="mb-4 row" style="padding:10px;">
+        <mat-form-field appearance="outline">  
           <input type="number" matInput placeholder="Enter the number of daily hours" formControlName="hours">
           <mat-error>Invalid input</mat-error>
         </mat-form-field>
       </div>
     <!-- Submit button -->
-    <button type="submit" [disabled]="activeSubmit" class="btn btn-primary btn-block mb-4">
-      Find Volunteer
-    </button>
+    <div class="mb-4 row" style="padding:10px; justify-content:center;">
+      <button type="submit" [disabled]="activeSubmit" class="btn btn-success btn-block mb-4" style="max-width:500px;">
+        Find Volunteer
+      </button>
+    </div>
   </form>
-  <mat-form-field>
+  <!--<mat-form-field>
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
-  </mat-form-field>
+  </mat-form-field>-->
   
-  <div class="mat-elevation-z8">
+  <div class="mat-elevation-z8" style="padding:10px;">
     <table mat-table [dataSource]="dataSource" matSort>
   
       <!-- ID Column -->
@@ -64,9 +66,9 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   
       <!-- Row shown when there is no matching data. -->
-      <tr class="mat-row" *matNoDataRow>
+      <!--<tr class="mat-row" *matNoDataRow>
         <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-      </tr>
+      </tr>-->
     </table>
   
     <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>

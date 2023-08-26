@@ -1,22 +1,24 @@
+<div class = "main-body">
 <form [formGroup]="form" (ngSubmit)="submit()">
-    <div class="mb-4 row">
-      <mat-form-field>
+    <div class="mb-4 row" style="padding:10px;">
+      <mat-form-field appearance="outline">
+        <mat-label>Age:</mat-label>
         <input type="number" matInput placeholder="Enter Your Age" formControlName="age">
         <mat-error>Age Limit Exceeded</mat-error>
       </mat-form-field>
     </div>
-    <div class="mb-4 row">
-      <mat-form-field appearance="fill">
-          <mat-label>Gender</mat-label>
+    <div class="mb-4 row" style="padding:10px;">
+      <mat-form-field appearance="outline">
+          <mat-label>Gender:</mat-label>
           <mat-select formControlName="gender" (selectionChange)="onSelectGender($event)">
             <mat-option value="male">Male</mat-option>
             <mat-option value="female">Female</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
-      <div class="mb-4 row">
-        <mat-form-field appearance="fill">
-            <mat-label>City</mat-label>
+      <div class="mb-4 row" style="padding:10px;">
+        <mat-form-field appearance="outline">
+            <mat-label>City:</mat-label>
             <mat-select formControlName="city" (selectionChange)="onSelectCity($event)">
               <mat-option value="delhi">Delhi</mat-option>
               <mat-option value="mumbai">Mumbai</mat-option>
@@ -26,14 +28,18 @@
             </mat-select>
           </mat-form-field>
         </div>
-        <div class="mb-4 row">
-            <mat-form-field>
+        <div class="mb-4 row" style="padding:10px;">
+            <mat-form-field appearance="outline">
+              <mat-label>Address:</mat-label>
               <textarea matInput placeholder="Enter Your Address" formControlName="address" rows='4'></textarea>
               <mat-error>Enter a valid address</mat-error>
             </mat-form-field>
           </div>
     <!-- Submit button -->
-    <button type="submit" [disabled]="activeSubmit" class="btn btn-primary btn-block mb-4">
-      Submit
-    </button>
+    <div class="mb-4 row" style="padding:10px; justify-content:center;">
+      <button type="submit" [disabled]="activeSubmit" class="btn btn-success btn-block mb-4" style="max-width:500px;">
+        {{getButtonText()}}
+      </button>
+    </div>
   </form>
+</div>
